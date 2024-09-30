@@ -1,6 +1,6 @@
 ## 简介
 [docsify-note在线笔记](https://gitee.com/mgang/docsify-note)将个人使用docsify的经验整理并提炼，最后分享给大家，帮助大家构建自己的在线笔记，或者文档！
-
+首页
 ## 快速开始
 已经整理好模板仓库，请参考[docsify-template](https://mg0324.github.io/docsify-template/#/)。
 
