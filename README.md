@@ -22,11 +22,3 @@ docsify s
 
 5. 在模板基础上调整配置值为自己的即可快速构建您的在线笔记或文档的基础版本。
 
-真正让您只关注分享内容的书写，**now enjoy it**! 
-
-查看示例，请到[docsify-note](https://mgang.gitee.io/docsify-note/)
-
-## 微信交流群
-欢迎加入微信交流群，请加我微信并备注[`docsify-note交流`]，我会拉您进群！
-
-![](https://res.meiflower.top/.netlify/images?url=/docsify-note/mango-wx.jpeg&w=300)
