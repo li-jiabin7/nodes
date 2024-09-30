@@ -41,9 +41,6 @@ aside.toc-nav {
     left: 0px;
     font-size: 15px;
 }
-img.emoji{
-    height:32px;
-}
 
 @media only screen and (max-width: 768px) {
     .sidebar-pin{

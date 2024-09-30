@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>docsify-note在线笔记</title>
+  <title>docsify-template</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta name="renderer" content="webkit">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="static/css/ext.css">
   <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
   <!--[if lt IE 9]>
@@ -21,11 +21,10 @@
 </head>
 <body>
   <div id="app"></div>
-  
   <script>
     window.$docsify = {
-      name: 'docsify-note在线笔记<span class="mg-badge">1.2.1</span>',
-      repo: 'https://gitee.com/mgang/docsify-note.git',
+      name: 'docsify-template<span class="mg-badge">1.1.1</span>',
+      repo: 'https://github.com/mg0324/docsify-template.git',
       coverpage: false,
       loadNavbar: true,
       loadSidebar: true,
@@ -35,9 +34,6 @@
       subMaxLevel: 5,
       //basePath: 'http://mg.meiflower.top/',
       sidebarDisplayLevel: 5, // set sidebar display level
-      // plantuml: {
-      //   skin: 'default'
-      // },
       count:{
         countable:true,
         fontsize:'0.9em',
@@ -57,104 +53,7 @@
         style: 'text-align: center;',
         class: 'className'
       },
-      vueComponents: {
-        'card-link': {
-          template: `
-            <a :href="href" target="_blank">
-              {{title}}
-            </a>
-          `,
-          props:["id","title"],
-          computed: {
-            href(){
-              return "https://mg.meiflower.top/cardview/index.html?id="+this.id;
-            }
-          },
-          data() {
-            return {
-              
-            }
-          }
-        },
-        'card-area': {
-          template: `
-           <div>
-            <iframe  :src="href" :style="{width:cardWidth,height:cardHeight}"></iframe>
-           </div>
-          `,
-          props:["id","height","width"],
-          computed: {
-            theId(){
-              return "card_" + this.id;
-            },
-            href(){
-              return "https://mg.meiflower.top/cardview/index.html?id="+this.id;
-            },
-            cardHeight(){
-              var result = "400px";
-              if(this.height){
-                result = this.height;
-              }
-              return result;
-            },
-            cardWidth(){
-              var result = "100%";
-              if(this.width){
-                result = this.width;
-              }
-              return result;
-            }
-          },
-          created() {
-            
-          },
-          data() {
-            return {
-              
-            }
-          }
-        },
-        'card-area-list': {
-          template: `
-           <div>
-            <iframe v-for="href in hrefs" :src="href" :style="{width:cardWidth,height:cardHeight,float:'left',marginRight:'5px'}"></iframe>
-           </div>
-          `,
-          props:["ids","height","width"],
-          computed: {
-            hrefs(){
-              var list = [];
-              var arr = this.ids.split(",");
-              for(var index in arr){
-                list.push("http://mg.meiflower.top/cardview/index.html?id="+arr[index]);
-              }
-              return list;
-            },
-            cardHeight(){
-              var result = "400px";
-              if(this.height){
-                result = this.height;
-              }
-              return result;
-            },
-            cardWidth(){
-              var result = "100%";
-              if(this.width){
-                result = this.width;
-              }
-              return result;
-            }
-          },
-          created() {
-            
-          },
-          data() {
-            return {
-              
-            }
-          }
-        }
-      },
+      vueComponents: {},// 可自定义
       timeUpdater: {
         text: "<div align='right' width='100%' style='color:gray;font-size:16px;margin-top:10px;'>最后更新时间: {docsify-updated}</div>",
         formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
@@ -178,16 +77,20 @@
       // docsify-plugin-toc
       toc: {
         tocMaxLevel: 5,
-        target: 'h2, h3, h4, h5, h6',
+        target: 'h1, h2, h3, h4, h5',
         ignoreHeaders:  ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
       },
       // 百度统计ID
-      baiduTjId: "e91bd7214bcbfc0ddd4c8f9e60453d7f",
+      baiduTjId: "6b106096cc897dbbba878967ab356b7d",
       // 开启busuanzi
       busuanzi: true,
+      // 开启远程md
+      remoteMarkdown: {
+        tag: 'rmd',
+      },
       // docsify ads 配置广告
       ads: [
-        {
+      {
           img: 'https://dn-lego-static.qbox.me/cps/1638355965-480x300.jpg',
           href: 'https://s.qiniu.com/zqiMBz'
         },
@@ -241,10 +144,6 @@
           href: 'https://url.cn/KM23RG9M'
         },
       ],
-      // 开启远程md
-      remoteMarkdown: {
-        tag: 'rmd',
-      },
       // giscus评论
       // giscus:{
       //   repo: "mg0324/docsify-comments",
@@ -252,7 +151,7 @@
       //   category: "Announcements",
       //   categoryId: "DIC_kwDOI68LwM4CUDhM",
       //   mapping: "url",
-      //   reactionsEnabled: "true",
+      //   reactionsEnabled: "0",
       //   strict: "1",
       //   emitMetadata: "0",
       //   inputPosition: "bottom",
@@ -260,10 +159,9 @@
       //   lang: "zh-CN",
       //   loading: "lazy"
       // },
-      // valine评论
       valine:{
-          appId: 'OclxQh48RGqlZ7OAmqfCXjqu-gzGzoHsz',
-          appKey: 'BZdD1MxORUSdktnY8A7eRjv2',
+        appId: "PWeOPVm5fJ6yLIBxKCLeYFi9-gzGzoHsz",
+        appKey: "S007S1OCruh1sObZw7bAXLmk"
       },
       markdown: {
         renderer: {
@@ -306,15 +204,14 @@
               if(pdf_renderer(code, lang, true)){
                 return pdf_renderer(code, lang, false);
               }
-            } 
-            else {
+            }else {
               return this.origin.code.apply(this, arguments);
             }
           }
         }
       },
       contributors: {
-        repo: 'docsify-note/docsify-note',
+        repo: 'mg0324/docsify-template',
         ignores: [],
         style: {
             color: '#ffffff',
@@ -332,8 +229,7 @@
       },
       auth: {
         enable: false, // 是否开启
-        use: "sha256",
-        password: "e10adc3949ba59abbe56e057f20f883e", // sha256密码
+        password: "e10adc3949ba59abbe56e057f20f883e", // md5密码
         title: "请输入密码", // 设置标题
         paths: ["^/bookmark"] // 需要认证的路径，支持正则表达式匹配
       }
@@ -367,8 +263,9 @@
       //       // ...
       //       // 异步处理完成后调用 next(html) 返回结果
       //       console.info("afterEach!")
-      //       console.info(html)
-      //       html += `<div id="vcomments"></div>`;
+      //       var busuanzi = '<div style="text-align:center;">本文阅读量<span id="busuanzi_value_page_pv"></span> 已有<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人访问 <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>';
+      //       html = html + busuanzi;
+      //       renderBusuanzi();
       //       next(html);
       //     });
 
@@ -376,12 +273,6 @@
       //       // 每次路由切换时数据全部加载完成后调用，没有参数。
       //       // ...
       //       console.info("doneEach!")
-      //       new Valine({
-      //           el: '#vcomments',
-      //           appId: 'OclxQh48RGqlZ7OAmqfCXjqu-gzGzoHsz',
-      //           appKey: 'BZdD1MxORUSdktnY8A7eRjv2',
-      //           path: window.document.title
-      //       })
       //     });
 
       //     hook.mounted(function() {
@@ -393,48 +284,49 @@
       //     hook.ready(function() {
       //       // 初始化并第一次加载完成数据后调用，没有参数。
       //       console.info("ready!")
+
+            
       //     });
       //   }
       // ]
+
     }
-    
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
   <!-- Docsify v4 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4.13.0/lib/docsify.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4.13.0/lib/docsify.js"></script>
   <!-- 搜索 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <!-- 图片放大缩小支持 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <!-- 拷贝文字内容 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <!-- 字数插件 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
   <!-- 分页导航 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <!-- 侧边栏扩展与折叠 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   <!-- valine -->
-  <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+  <script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-mango-valine@1.1.1/dist/docsify-mango-valine.min.js"></script>
   <!-- busuanzi -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-busuanzi@1.0.1/dist/docsify-busuanzi.min.js"></script>
   <!-- 页脚信息 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
-  <!-- 引入 layui.js -->
-  <script src="https://cdn.jsdelivr.net/npm/layui@2.7.6/dist/layui.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/heyui"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
+  <!-- 最近更新时间 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
   <!-- flexible alerts -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
+  <!-- 美化进度条 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
   <!-- docsify-accordion -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-accordion/src/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/docsify-accordion/src/index.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-accordion/src/style.css">
+  <script src="//cdn.jsdelivr.net/npm/docsify-accordion/src/index.js"></script>
   <!-- docsify-tabs (latest v1.x.x) -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <!-- docsify-backTop -->
-  <!-- <script src="https://mg.meiflower.top/oss/cdn/gh/Sumsung524/docsify-backTop/dist/docsify-backTop.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/gh/Sumsung524/docsify-backTop/dist/docsify-backTop.min.js"></script> -->
   <!-- docsify-plugin-toc -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.3.1/dist/light.css">
   <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.3.1/dist/docsify-plugin-toc.min.js"></script>
@@ -444,33 +336,31 @@
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-giscus@1.0.2/dist/giscus.css">
   <script src="https://cdn.jsdelivr.net/npm/docsify-giscus@1.0.2/dist/docsify-giscus.min.js"></script> -->
   <!-- GitTalk评论 -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-gitalk@1.0.0/dist/docsify-gitalk.min.js"></script> -->
   <!-- html preview demo-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.css"/>
+  <script src="//cdn.jsdelivr.net/npm/docsify-demo@latest/dist/index.min.js"></script>
   <!-- remote-markdown -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>
   <!-- docsify-drawio -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-drawio/viewer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-drawio/drawio.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/docsify-drawio/drawio.js'></script>
   <!-- docsify-pangu 加空格-->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
   <!-- docsify-kroki 支持全热门图形化语言-->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-kroki"></script>
-  <!-- java语法高亮 -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-kroki"></script>
   <!-- docsify ads -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-ads@1.0.4/dist/docsify-ads.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-ads@1.0.2/dist/docsify-ads.min.js"></script>
   <!-- docsify-contributors -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-contributors@latest/dist/index.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-contributors@latest/dist/index.min.js"></script>
   <!-- docsify pdf embed -->
-  <script src="https://cdn.jsdelivr.net/npm/pdfobject@2.2.8/pdfobject.min.js"></script> 
-  <script src="https://cdn.jsdelivr.net/npm/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
-  <!-- docsify auth -->
+  <script src="//cdn.jsdelivr.net/npm/pdfobject@2.2.8/pdfobject.min.js"></script> 
+  <script src="//cdn.jsdelivr.net/npm/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
+  <!-- docsify-auth -->
   <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-auth@1.2.0/dist/docsify-auth.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm//docsify-auth@1.2.0/dist/docsify-auth.min.js"></script>
 </body>
 </html>

@@ -1,1 +1,0 @@
-[rmd](https://raw.githubusercontent.com/mg0324/docsify-template/master/future.md)
