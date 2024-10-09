@@ -7,18 +7,62 @@ on:
     branches: [ "master" ]
 
 jobs:
-  first_job:
+   first_job:
     name: My first job
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, frontend] # 刚才设置服务器runner的label
+    permissions: # 设置jobs的权限
+      contents: read
+      id-token: write
+    environment: "action" # 刚才设置secret的名称
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} # 在secret设置的变量
+      JFROG_API_KEY: ${{ secrets.JFROG_API_KEY }}
     steps:
-    - name: Checkout actions
-      uses: actions/checkout@v2
-   # - name: Say hello
-   #  uses: ./.github/actions/say-hello-action
-    - name: start for build Docsify ---echo
+    - name: Checkout actions  # 拉代码
+      uses: actions/checkout@v3
+      with:
+         persist-credentials: false
+   # - name: Read Version # 读取版本号
+   #    id: read_version
+   #    run: |
+   #     echo "BUILD_VERSION=$(node -p "require('./package.json').buildVersion")" >> $GITHUB_ENV
+    - name: Docker Login # docker登录
+      uses: docker/login-action@v1
+      with:
+        registry: 1.jfrog.io
+        username: ${{ env.DOCKER_USERNAME }}
+        password: ${{ env.dockerToken 
+    
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+         node-version: '16.18.0'
+
+    - name: Install Dependencies # 执行前端的安装脚本
+      run: ./install.sh
+      
+    - name: Build # 打包并push镜像
+      env:
+        DIRECTORY: test
+        IMAGENAME: webapp-iamges
+        REGISTRY: 1jfrog.io
+      run: |
+        npm run prod:build
+        docker build . -t $IMAGENAME
+        docker image tag ${{ env.IMAGENAME }} ${{ env.REGISTRY }}/${{ env.DIRECTORY }}/webapp:${{ env.BUILD_VERSION }}
+        docker push ${{ env.REGISTRY }}/${{ env.DIRECTORY }}/webapp:${{ env.BUILD_VERSION }}
+
+            - name: Install webapp # 安装服务
+              run: |
+                sed -i 's/appVersion:.*/appVersion: \"${{ env.BUILD_VERSION }}\"/' /home/code/helms/webapp/iso/helm/webapp/Chart.yaml
+                cd /home/code/helms/webapp/iso
+                ./installWeb.sh
+    - name: start for build Docsify 
       env: 
         START_STR: Hi there! My name is
         USER_NAME: Ber
         END_STR: Thank you
       run: |
-       echo $START_STR $USER_NAME $END_STR.
+        cd /home/code/helms/webapp/iso
+        ./installWeb.sh
+        echo $START_STR $USER_NAME $END_STR.
