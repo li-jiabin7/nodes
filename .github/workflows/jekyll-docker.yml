@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Checkout actions
       uses: actions/checkout@v2
-    - name: Say hello
-      uses: ./.github/actions/say-hello-action
+   # - name: Say hello
+   #  uses: ./.github/actions/say-hello-action
     - name: start for build Docsify ---echo
       env: 
         START_STR: Hi there! My name is
