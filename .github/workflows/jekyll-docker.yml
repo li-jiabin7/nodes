@@ -1,0 +1,24 @@
+name: Docsify site CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  first_job:
+    name: My first job
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout actions
+      uses: actions/checkout@v2
+    - name: Say hello
+      uses: ./.github/actions/say-hello-action
+    - name: start for build Docsify ---echo
+      env: 
+        START_STR: Hi there! My name is
+        USER_NAME: Ber
+        END_STR: Thank you
+      run: |
+       echo $START_STR $USER_NAME $END_STR.
