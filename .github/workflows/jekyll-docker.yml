@@ -9,7 +9,7 @@ on:
 jobs:
    first_job:
     name: My first job
-    runs-on: [self-hosted, linux, x64, frontend] # 刚才设置服务器runner的label
+    runs-on: [self-hosted, linux, x64] # 刚才设置服务器runner的label
     permissions: # 设置jobs的权限
       contents: read
       id-token: write
