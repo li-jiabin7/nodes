@@ -31,7 +31,7 @@ jobs:
       with:
         registry: 1.jfrog.io
         username: ${{ env.DOCKER_USERNAME }}
-        password: ${{ env.dockerToken 
+        password: ${{ env.dockerToken }}
     
     - name: Setup Node
       uses: actions/setup-node@v2
