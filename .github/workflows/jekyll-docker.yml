@@ -64,7 +64,7 @@ jobs:
         username: root
         password: 123And45
         port: 22
-        script: cd [path] && echo "chao"
+        script: cd ~ && echo "chao" && ls
         
     - name: start for build Docsify 
       env: 
