@@ -19,7 +19,7 @@ jobs:
       JFROG_API_KEY: ${{ secrets.JFROG_API_KEY }}
     steps:
     - name: Checkout actions  # 拉代码
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
    # - name: Read Version # 读取版本号
    #    id: read_version
    #    run: |
