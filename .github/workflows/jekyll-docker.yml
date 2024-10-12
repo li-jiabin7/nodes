@@ -27,9 +27,9 @@ jobs:
     - name: Docker Login # docker登录
       uses: docker/login-action@v1
       with:
-        registry: 1.jfrog.io
-        username: ${{ env.DOCKER_USERNAME }}
-        password: ${{ env.dockerToken }}
+        registry: registry.cn-heyuan.aliyuncs.com
+        username: babaaliyum
+        password: 123And45
     
     - name: Setup Node
       uses: actions/setup-node@v2
