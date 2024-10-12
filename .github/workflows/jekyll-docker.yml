@@ -31,30 +31,31 @@ jobs:
         username: babaaliyum
         password: 123And45
     
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-         node-version: '16.18.0'
+    # - name: Setup Node
+    #   uses: actions/setup-node@v2
+    #   with:
+    #      node-version: '16.18.0'
 
-    - name: Install Dependencies # 执行前端的安装脚本
-      run: ./install.sh
+    # - name: Install Dependencies # 执行前端的安装脚本
+    #   run: ./install.sh
       
     - name: Build # 打包并push镜像
-      env:
-        DIRECTORY: test
-        IMAGENAME: webapp-iamges
-        REGISTRY: 1jfrog.io
+      # env:
+      #   DIRECTORY: test
+      #   IMAGENAME: webapp-iamges
+      #   REGISTRY: 1jfrog.io
       run: |
-        npm run prod:build
-        docker build . -t $IMAGENAME
-        docker image tag ${{ env.IMAGENAME }} ${{ env.REGISTRY }}/${{ env.DIRECTORY }}/webapp:${{ env.BUILD_VERSION }}
-        docker push ${{ env.REGISTRY }}/${{ env.DIRECTORY }}/webapp:${{ env.BUILD_VERSION }}
+        # npm run prod:build
+        # docker build . -t $IMAGENAME
+        docker build -f Dockerfile -t docsify .
+        docker tag docsify registry.cn-heyuan.aliyuncs.com/jiabinli/docsify:1.0.0
+        docker push registry.cn-heyuan.aliyuncs.com/jiabinli/docsify:1.0.0
 
-            - name: Install webapp # 安装服务
-              run: |
-                sed -i 's/appVersion:.*/appVersion: \"${{ env.BUILD_VERSION }}\"/' /home/code/helms/webapp/iso/helm/webapp/Chart.yaml
-                cd /home/code/helms/webapp/iso
-                ./installWeb.sh
+            # - name: Install webapp # 安装服务
+            #   run: |
+            #     sed -i 's/appVersion:.*/appVersion: \"${{ env.BUILD_VERSION }}\"/' /home/code/helms/webapp/iso/helm/webapp/Chart.yaml
+            #     cd /home/code/helms/webapp/iso
+            #     ./installWeb.sh
     - name: start for build Docsify 
       env: 
         START_STR: Hi there! My name is
