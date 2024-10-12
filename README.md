@@ -12,7 +12,7 @@ npm install -g docsify
 ``` shell
 mkdir test # 修改为自己的项目名，如test
 cd test # 进入到项目下
-docsify-note init # 初始化，执行完后会下载模板仓库内容到当前文件夹下
+docsify init  # 初始化，执行完后会下载模板仓库内容到当前文件夹下
 ```
 3. 调整文档标题和内容后，启动服务
 ``` shell
