@@ -9,7 +9,7 @@ on:
 jobs:
    first_job:
     name: My first job
-    runs-on: ubuntu-latest # 刚才设置服务器runner的label
+    runs-on: self-hosted # 刚才设置服务器runner的label
     permissions: # 设置jobs的权限
       contents: read
       id-token: write
