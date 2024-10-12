@@ -56,6 +56,16 @@ jobs:
             #     sed -i 's/appVersion:.*/appVersion: \"${{ env.BUILD_VERSION }}\"/' /home/code/helms/webapp/iso/helm/webapp/Chart.yaml
             #     cd /home/code/helms/webapp/iso
             #     ./installWeb.sh
+
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.1.0
+      with:
+        host: 8.155.16.54
+        username: root
+        password: 123And45
+        port: 22
+        script: cd [path] && echo "chao"
+        
     - name: start for build Docsify 
       env: 
         START_STR: Hi there! My name is
