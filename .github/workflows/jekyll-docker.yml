@@ -65,7 +65,7 @@ jobs:
         password: 123And45
         port: 22
         script: cd ~  && echo "chao"  \
-                && docker login --username=babaaliyum registry.cn-heyuan.aliyuncs.com  \
+                && docker login --username=babaaliyum registry.cn-heyuan.aliyuncs.com -p 123And45 \
                 && docker pull registry.cn-heyuan.aliyuncs.com/jiabinli/docsify:1.0.0 \
                 && docker run -itp 3000:3000 --name=docsify -v $(pwd):/docs registry.cn-heyuan.aliyuncs.com/jiabinli/docsify:1.0.0 \
                 && ls
