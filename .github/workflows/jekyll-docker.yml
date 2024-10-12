@@ -62,6 +62,4 @@ jobs:
         USER_NAME: Ber
         END_STR: Thank you
       run: |
-        cd /home/code/helms/webapp/iso
-        ./installWeb.sh
         echo $START_STR $USER_NAME $END_STR.
